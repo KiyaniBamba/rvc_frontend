@@ -5,9 +5,11 @@ import Footer from "./Footer";
 import CheckIcon from '@material-ui/icons/Check';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link } from "react-router-dom";
-import { Input } from '@material-ui/core';
+import { TextField, Select, MenuItem } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const ProgressBarDiv = styles.div`
+
+export const ProgressBarDiv = styles.div`
 height: 1rem;
 background-color: #C4C4C4;
 margin: 0 auto;
@@ -20,6 +22,17 @@ border-radius: 5px;
   border-radius: 5px;
 }
 `;
+
+export const Section1 = styles.div`
+display:flex;
+flex-direction:column;
+background-color: #0AB28A;
+height: 18rem;
+width:100%;
+box-shadow: 0px 8px 30px #DAD9D9;
+margin-bottom:10px;
+`
+
 
 const SwitchDiv = styles.div`
 font-size: 1.6rem;
@@ -136,59 +149,98 @@ input {
 }
 `
 
-export const Section2 = styles.div `
-text-align: left;
-margin:2%;
+export const NavigationSection1 = styles.div`
+display:flex;
+justify-content: space-between;
 `
+
+export const Addtitle = styles.div `
+margin-left:5%;
+margin-right:15%;
+
+`
+
+export const Title = styles.h3 `
+font-weight: 300;
+font-size: 20px;
+line-height: 18px;
+margin-bottom: 5px;
+margin-top:5px;
+`
+
+export const Section2 = styles.div `
+display:flex;
+flex-direction:column;
+text-align: left;
+margin:5%;
+margin-top:8px;
+font-weight: 300;
+font-size: 15px;
+`
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    color: 'white'
+  },
+}));
 
 
 export default function RecipeFormOne(props) {
   const { history, step, nextPage, onHandleChange, onHandleSubmit } = props;
-
+  const classes = useStyles();
   return (
     <div>
       <StyledForm
         onSubmit={onHandleSubmit}
       >
-      <div className="recipe-nav">
-        <div
-          className="back-arrow-container"
-          onClick={() => history.push("/profile")}
-        >
-        <Link to='/profile'>
-          <ArrowBackIcon cgit style={{ fontSize: 40, color: 'white' }} />
-         </Link>
-        
-        </div>
-        <button
-          type='submit'
-          className="submit-recipe-container"
-        >
-        <CheckIcon cgit style={{ fontSize: 40, color: 'white' }} />
+      <Section1>
+        <NavigationSection1>
+          <div
+              onClick={() => history.push("/profile")}
+            >
+            <Link to='/profile'>
+              <ArrowBackIcon cgit style={{ fontSize: 40, color: 'white' }} />
+            </Link>
+          </div>
+          <button
+            type='submit'
+          >
+          <CheckIcon cgit style={{ fontSize: 40, color: 'white', background:'transparent' }} />
         </button>
-            <div>
-                <input
-                  onChange={onHandleChange}
-                  type="text"
-                  name="title"
-                  placeholder="enter recipe name"
-                />
-      </div>
-
-        </div>
+        </NavigationSection1>
+            <Addtitle>
+            <TextField
+          id="standard-full-width"
+          style={{ color: "white" }}
+          onChange={onHandleChange}
+          placeholder="Enter recipe name"
+          fullWidth
+          margin="normal"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </Addtitle>
+        </Section1>
         <Section2>
-          <label htmlFor="recipeCategoryInput">Category:</label>
-          <select
-            id="recipeCategoryInput"
+          <Title htmlFor="recipeCategoryInput">Category:</Title>
+          <Select
+            Select
             onChange={onHandleChange}
             name="recipe_category"
           >
-            <option value="" label="pick a category" />
-            <option value="breakfast" label="breakfast" />
-            <option value="lunch" label="lunch" />
-            <option value="dinner" label="dinner" />
-          </select>
-        </Section2>
+          <MenuItem value="breakfast">breakfast</MenuItem>
+          <MenuItem value="lunch">lunch</MenuItem>
+          <MenuItem value="dinner">dinner</MenuItem>
+            {/* <option value="" label="pick a category" /> */}
+          </Select>
         <div className="recipe-input">
           <input
             onChange={onHandleChange}
@@ -205,7 +257,7 @@ export default function RecipeFormOne(props) {
             placeholder="Duration in minutes"
             min='1'
             max='1000'
-          />
+            />
         </div>
         <div className="recipe-input">
           <input
@@ -217,21 +269,22 @@ export default function RecipeFormOne(props) {
             max='1000'
           />
         </div>
-        <div className="section2">
-          <label htmlFor="recipeCategoryInput">Difficulty Level:</label>
-          <select
+        <div>
+          <div>
+          <Title htmlFor="recipeCategoryInput">Difficulty Level:</Title>
+          </div>
+          <Select
             onChange={onHandleChange}
             name="difficulty"
           >
-            <option value="" label="pick a level" />
-            <option value="1" label="1" />
-            <option value="2" label="2" />
-            <option value="3" label="3" />
-          </select>
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+            {/* <option value="" label="pick a level" /> */}
+          </Select>
         </div>
-       
-        <div className="section3">
-          <p className="options-paragraph">Options:</p>
+        <div>
+          <Title>Options:</Title>
           <SwitchDiv>
             Private
             <label class="switch">
@@ -248,13 +301,14 @@ export default function RecipeFormOne(props) {
             type="text"
             name="tag"
             placeholder="Add as many tags as you want to easily find your recipe"
-          />
+            />
           <div className="step">Step {step}/3</div>
           {/* <button onClick={nextPage}>Next</button> */}
           <ProgressBarDiv>
             <div className="progress"></div>
           </ProgressBarDiv>
         </div>
+        </Section2>
       </StyledForm>
       <Footer />
     </div>
