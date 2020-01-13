@@ -27,7 +27,7 @@ export const Section1 = styles.div`
 display:flex;
 flex-direction:column;
 background-color: #0AB28A;
-height: 18rem;
+height: 15rem;
 width:100%;
 box-shadow: 0px 8px 30px #DAD9D9;
 margin-bottom:10px;
@@ -103,7 +103,7 @@ input:checked + .slider:before {
 export const StyledForm = styles.form`
 display: flex;
 flex-direction: column;
-margin-top: 4rem;
+// margin-top: 4rem;
 input {
   width: 80%;
   height: 4rem;
@@ -164,8 +164,8 @@ export const Title = styles.h3 `
 font-weight: 300;
 font-size: 20px;
 line-height: 18px;
-margin-bottom: 5px;
-margin-top:5px;
+margin-bottom: 15px;
+margin-top:15px;
 `
 
 export const Section2 = styles.div `
@@ -216,16 +216,16 @@ export default function RecipeFormOne(props) {
         </NavigationSection1>
             <Addtitle>
             <TextField
-          id="standard-full-width"
-          style={{ color: "white" }}
-          onChange={onHandleChange}
-          placeholder="Enter recipe name"
-          fullWidth
-          margin="normal"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
+              id="standard-full-width"
+              style={{ color: "white" }}
+              onChange={onHandleChange}
+              placeholder="Enter recipe name"
+              fullWidth
+              margin="normal"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
         />
       </Addtitle>
         </Section1>
@@ -242,29 +242,31 @@ export default function RecipeFormOne(props) {
             {/* <option value="" label="pick a category" /> */}
           </Select>
         <div className="recipe-input">
-          <input
+          <TextField
+                    id="margin-none"
+                    className={classes.textField}
             onChange={onHandleChange}
             type="text"
             name="description"
-            placeholder="enter description"
+            placeholder="Description"
           />
         </div>
         <div className="recipe-input">
-          <input
+          <TextField
             onChange={onHandleChange}
             type="number"
             name="time_required"
-            placeholder="Duration in minutes"
+            placeholder="Times"
             min='1'
             max='1000'
             />
         </div>
         <div className="recipe-input">
-          <input
+          <TextField
             onChange={onHandleChange}
             type="number"
             name="budget"
-            placeholder="Budget in USD"
+            placeholder="Budget (USD)"
             min='1'
             max='1000'
           />
