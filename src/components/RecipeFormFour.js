@@ -9,10 +9,7 @@ export default function RecipeFormFour (props) {
   
   return ( 
     <div>
-       <form
-      onSubmit={onHandleFinalSubmit}
-
-      >
+       <form>
          <div className="recipe-nav">
         <div
           className="back-arrow-container"
