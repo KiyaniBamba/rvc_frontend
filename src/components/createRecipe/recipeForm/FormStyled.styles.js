@@ -10,6 +10,15 @@ export const Section1 = styled.div`
     box-shadow: 0px 8px 30px #DAD9D9;
     margin-bottom:10px;
 `
+export const Section1b = styled.div`
+    display:flex;
+    flex-direction:column;
+    background-color: #0AB28A;
+    height: 10rem;
+    width:100%;
+    box-shadow: 0px 8px 30px #DAD9D9;
+    margin-bottom:10px;
+`
 
 export const NavigationSection1 = styled.div`
 display:flex;
@@ -157,3 +166,52 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 `
+
+export const Section2b = styled.div `
+display: flex;
+flex-direction: column;
+margin-top:15px;
+h1 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  margin-bottom:10px;
+}
+`
+export const ExportImg = styled.div `
+width: 100%;
+height: 397px;
+background: rgba(10, 178, 138, 0.21);
+padding:0px;
+display:flex;
+align-items: center; 
+align-content: center;
+margin-bottom:35px;
+margin-top: 35px;
+`
+
+export const Title2 = styled.h1 `
+font-style: normal;
+font-weight: 300;
+font-size: 35px;
+line-height: 15px;
+display: flex;
+// align-items: center;
+margin-bottom: 15px;
+margin-top:15px;
+`
+
+export const AddItem = styled.div `
+color: currentColor;
+  width: 100%;
+  border: 0;
+  height: 25px;
+  margin-top:2%;
+display: flex;
+align-content:flex-start;
+background: rgba(10, 179, 138, 0.08);
+border-radius: 2px;
+box-sizing: content-box;
+    p{
+      font-size: 20px;
+    }`

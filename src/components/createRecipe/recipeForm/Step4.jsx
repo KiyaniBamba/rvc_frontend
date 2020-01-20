@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as dispatchers from "../../../actions/actionCreators"
-
-
+import CheckIcon from '@material-ui/icons/Check';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Link } from "react-router-dom";
+import { TextField, Select, MenuItem } from '@material-ui/core';
+import AddCircleOutlineTwoToneIcon from '@material-ui/icons/AddCircleOutlineTwoTone';
+import {
+  Section1,
+  NavigationSection1,
+  Addtitle,
+  Title,
+  Title2,
+  Section2b,
+  Section2,
+  AddItem
+} from "../../../globals/form-styles";
 
 
 function Step4(props) {
@@ -30,17 +43,54 @@ function Step4(props) {
 
   return (
     <form onSubmit={onSubmit}>
-      <button type="submit"> Next </button>
+    <Section1>
+      <NavigationSection1>
+        <div
+          // onClick={prevPage}
+          >
+          <ArrowBackIcon cgit style={{ fontSize: 40, color: 'white' }} />
+        </div>
+        <button type='submit' style={{"border":"none", "background": "inherit", "outline":"none"}}>
+          <CheckIcon cgit style={{ fontSize: 40, color: 'white', background:'transparent' }} />
+        </button>
+      </NavigationSection1>
+      <Addtitle>
+        {/* <h1>{title}</h1> */}
+        </Addtitle>
+      </Section1>
       <br></br>
-      <input type="text" name="instruction" onChange={inputHandler} />
-      <button type="button" onClick={addInstruction}>
-        Add Instruction
-      </button>
+      <TextField
+          id="filled-full-width"
+          style={{ margin: 8 }}
+          placeholder="Add instruction"
+          helperText="click on the plus button to add your instruction!"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="filled"
+          onChange={inputHandler}
+          type="text"
+          name="instruction"
+        />
+      
+      <div
+        style={{"margin" : "0 auto"}}
+        onClick={addInstruction}
+        >
+          <AddCircleOutlineTwoToneIcon cgit style={{ fontSize: 40, color: '#0AB38A' }} />
+      </div>
+
       <ul>
         {instructionsArray.length
-          ? instructionsArray.map((ing, i) => <li key={i}>{ing}</li>)
+          ? instructionsArray.map((ing, i) =>
+          <AddItem>
+           <p key={i}>{ing}</p>
+          </AddItem>
+           )
           : null}
-      </ul>
+      </ul> 
     </form>
   );
 }
